@@ -5,7 +5,7 @@ pipeline {
     stage('checkout stage') {
       steps {
         sh 'rm -rf AnsibleTomcat'
-        sh 'git clone '
+        sh 'git clone https://github.com/Jagruthi111/AnsibleTomcat.git'
       }
     }
     stage('running playbook') {
