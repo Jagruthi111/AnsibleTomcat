@@ -1,5 +1,25 @@
 ---
-- name: calling_roles
-  hosts: all
-  roles:
-    - tomcat_role
+- hosts: java_servers
+  become: true
+  tasks:
+    - name: Add Grafana APT repository key
+      apt_key:
+        url: https://packages.grafana.com/gpg.key
+        state: present
+
+    - name: Add Grafana APT repository
+      apt_repository:
+        repo: deb https://packages.grafana.com/oss/deb stable main
+        state: present
+        filename: grafana
+
+    - name: Install Grafana
+      apt:
+        name: grafana
+        state: present
+
+    - name: Start and enable Grafana service
+      systemd:
+        name: grafana-server
+        enabled: yes
+        state: started
