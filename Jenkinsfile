@@ -1,6 +1,5 @@
 pipeline {
   agent any
-  
   stages {
     stage('checkout stage') {
       steps {
@@ -10,7 +9,7 @@ pipeline {
     }
     stage('running playbook') {
       steps {
-        sh 'ansible-playbook -i hosts demo.yml'
+        sh 'ansible-playbook -i hosts demotomcat.yml'
       }
     }
   }
